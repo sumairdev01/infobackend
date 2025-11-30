@@ -5,3 +5,5 @@ python-dotenv
 psycopg2-binary
 whitenoise
 gunicorn
+dj-database-url
+
