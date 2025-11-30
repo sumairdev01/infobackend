@@ -41,6 +41,11 @@ CORS_ALLOWED_ORIGINS = [
     os.getenv('FRONTEND_ORIGIN', 'http://localhost:5173'),
 ]
 
+# CSRF trusted origins for Vercel
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.vercel.app',
+]
+
 ROOT_URLCONF = 'backend.urls'
 
 # Templates
@@ -65,13 +70,24 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 import dj_database_url
 
 # DATABASE (PostgreSQL)
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL'),
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
+else:
+    # Fallback for local development or if DATABASE_URL is not set
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # STATIC FILES
 STATIC_URL = '/static/'
