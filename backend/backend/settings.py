@@ -39,7 +39,10 @@ MIDDLEWARE = [
 # CORS setup for React frontend
 CORS_ALLOWED_ORIGINS = [
     os.getenv('FRONTEND_ORIGIN', 'http://localhost:5173'),
+    'https://*.vercel.app',
 ]
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_CREDENTIALS = True
 
 # CSRF trusted origins for Vercel
 CSRF_TRUSTED_ORIGINS = [
