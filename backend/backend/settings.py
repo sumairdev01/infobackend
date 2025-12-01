@@ -46,6 +46,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://*.vercel.app',
 ]
 
+
+
 ROOT_URLCONF = 'backend.urls'
 
 # Templates
@@ -91,8 +93,9 @@ else:
 
 # STATIC FILES
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_STORAGE = 'whitenoise.storage.WhiteNoiseStorage'
 
 
 # DEFAULT PRIMARY KEY FIELD TYPE

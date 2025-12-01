@@ -8,3 +8,4 @@ scikit-learn
 django-cors-headers
 whitenoise
 dj-database-url
+gunicorn
