@@ -93,7 +93,7 @@ else:
 
 # STATIC FILES
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build')
+STATIC_ROOT = BASE_DIR.parent / 'staticfiles_build'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATICFILES_STORAGE = 'whitenoise.storage.WhiteNoiseStorage'
 
